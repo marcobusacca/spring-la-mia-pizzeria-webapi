@@ -7,8 +7,6 @@ import java.util.List;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -102,7 +100,6 @@ public class Pizza {
 	public void setIngredients(List<Ingredient> ingredients) {
 		this.ingredients = ingredients;
 	}
-	@JsonIgnore
 	public void setIngredients(Ingredient...ingredients) {
 		setIngredients(Arrays.asList(ingredients));
 	}
