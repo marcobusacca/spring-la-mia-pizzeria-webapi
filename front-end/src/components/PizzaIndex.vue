@@ -1,8 +1,19 @@
 <script setup>
+// PROPS
+const props = defineProps({
+    pizzas: {
+        type: Array,
+        required: true
+    }
+});
 </script>
 
 <template>
-    <h1>PizzaIndex</h1>
+    <ul>
+        <li v-for="pizza in pizzas" :key="pizza.id">
+            {{ pizza.nome }}
+        </li>
+    </ul>
 </template>
 
 <style scoped></style>
