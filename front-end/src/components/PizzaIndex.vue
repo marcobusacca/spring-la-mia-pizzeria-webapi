@@ -33,6 +33,11 @@ const props = defineProps({
                     </button>
                 </td>
             </tr>
+            <tr>
+                <td colspan="3" class="py-4">
+                    <button class="btn btn-success" @click="$emit('createPizza')">Crea</button>
+                </td>
+            </tr>
         </tbody>
     </table>
 </template>

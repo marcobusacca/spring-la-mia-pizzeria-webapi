@@ -1,2 +1,9 @@
 @import '/node_modules/@fortawesome/fontawesome-free/css/all.min.css';
 @import "/node_modules/bootstrap/scss/bootstrap.scss";
+
+.main-background {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    border-radius: 10px !important;
+}

@@ -11,6 +11,7 @@ import PizzaForm from './components/PizzaForm.vue';
 // DATA
 const pizzas = ref(null);
 const pizzaActive = ref(null);
+const creatingPizza = ref(false);
 
 // FUNCTIONS
 const getPizzas = async () => {
@@ -24,9 +25,14 @@ const openPizza = (id) => {
     }
   });
 };
-const closePizza = (update) => {
+const pizzaCreated = () => {
+  creatingPizza.value = false;
+  getPizzas();
+};
+const closePage = (update) => {
   pizzaActive.value = null;
-  if (update) getPizzas();
+  creatingPizza.value = false;
+  getPizzas();
 };
 
 // HOOKS
@@ -36,9 +42,13 @@ onMounted(getPizzas);
 <template>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12">
-        <pizza-index v-if="pizzaActive == null" :pizzas="pizzas" @open-pizza="openPizza" />
-        <pizza-show v-else :pizza="pizzaActive" @close-pizza="closePizza" />
+      <div class="col-12" v-if="creatingPizza">
+        <pizza-form @close-page="closePage" @created="pizzaCreated" />
+      </div>
+      <div class="col-12" v-else>
+        <pizza-index v-if="pizzaActive == null" :pizzas="pizzas" @open-pizza="openPizza"
+          @create-pizza="creatingPizza = true" />
+        <pizza-show v-else :pizza="pizzaActive" @close-page="closePage" />
       </div>
     </div>
   </div>
