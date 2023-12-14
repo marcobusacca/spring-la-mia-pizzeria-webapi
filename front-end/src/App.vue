@@ -29,6 +29,10 @@ const pizzaCreated = () => {
   creatingPizza.value = false;
   getPizzas();
 };
+const deletePizza = () => {
+  pizzaActive.value = null;
+  getPizzas();
+};
 const closePage = (update) => {
   pizzaActive.value = null;
   creatingPizza.value = false;
@@ -48,7 +52,7 @@ onMounted(getPizzas);
       <div class="col-12" v-else>
         <pizza-index v-if="pizzaActive == null" :pizzas="pizzas" @open-pizza="openPizza"
           @create-pizza="creatingPizza = true" />
-        <pizza-show v-else :pizza="pizzaActive" @close-page="closePage" />
+        <pizza-show v-else :pizza="pizzaActive" @close-page="closePage" @delete-pizza="deletePizza" />
       </div>
     </div>
   </div>

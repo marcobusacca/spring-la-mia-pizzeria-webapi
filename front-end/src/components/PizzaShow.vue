@@ -18,10 +18,20 @@ const props = defineProps({
 const pizzaUpdate = ref(false);
 const myPizza = ref(props.pizza);
 
+// EMITS
+const emits = defineEmits(["deletePizza"]);
+
 // FUNCTIONS
 const updatedPizza = (newPizza) => {
     pizzaUpdate.value = false;
     myPizza.value = newPizza;
+}
+const deletePizza = async (id) => {
+    const data = await axios.delete(
+        `http://localhost:8080/api/v1.0/pizzas/${id}`
+    );
+
+    emits("deletePizza");
 }
 </script>
 
@@ -32,17 +42,17 @@ const updatedPizza = (newPizza) => {
                 <i class=" fa-solid fa-circle-arrow-left fa-xl"></i>
             </button>
         </div>
-        <img :src="pizza.url_foto" class="rounded">
+        <img :src="myPizza.url_foto" class="rounded">
         <div class="p-3">
-            <h5 v-text="pizza.nome" class="card-title my-3"></h5>
-            <p v-text="pizza.descrizione" class="card-text my-3"></p>
-            <span v-text="pizza.prezzo" class="d-block my-3"></span>
+            <h5 v-text="myPizza.nome" class="card-title my-3"></h5>
+            <p v-text="myPizza.descrizione" class="card-text my-3"></p>
+            <span v-text="myPizza.prezzo" class="d-block my-3"></span>
         </div>
         <div class="p-3">
             <button class="btn btn-warning mx-2" @click="pizzaUpdate = true">
                 <i class="fas fa-edit"></i>
             </button>
-            <button class="btn btn-danger mx-2">
+            <button class="btn btn-danger mx-2" @click="deletePizza(myPizza.id)">
                 <i class="fas fa-trash"></i>
             </button>
         </div>
