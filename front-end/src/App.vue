@@ -22,5 +22,15 @@ onMounted(getPizzas);
 </script>
 
 <template>
-  <pizza-index :pizzas="pizzas" />
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <pizza-index :pizzas="pizzas" />
+      </div>
+    </div>
+  </div>
 </template>
+
+<style lang="scss" scoped>
+@use './styles/generals.scss' as *;
+</style>

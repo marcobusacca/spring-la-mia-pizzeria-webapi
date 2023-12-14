@@ -5,4 +5,6 @@
     <h1>PizzaShow</h1>
 </template>
 
-<style scoped></style>
+<style lang="scss" scoped>
+@use '../styles/generals.scss' as *;
+</style>
